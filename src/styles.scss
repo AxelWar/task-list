@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+$primary-color: #007bff;
+$background-color: #f4f4f4;
+$text-color: #333;
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var($background-color);
+    color: var($text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}

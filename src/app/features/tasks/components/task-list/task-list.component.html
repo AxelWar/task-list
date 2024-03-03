@@ -1,1 +1,15 @@
-<p>task-list works!</p>
+<div class="list-container">
+    <ul>
+        <li *ngFor="let task of tasks">
+            <input
+                class="task-checkbox"
+                type="checkbox"
+                [checked]="task.isDone"
+                (change)="toggleDone(task.id)"
+            />
+            <!-- <app-checkbox [(ngModel)]="task.isDone"></app-checkbox> -->
+            {{ task.title }}
+            <button (click)="deleteTask(task.id)">🗑️</button>
+        </li>
+    </ul>
+</div>
