@@ -1,6 +1,6 @@
 <div class="list-container">
     <ul>
-        <li *ngFor="let task of tasks">
+        <li *ngFor="let task of displayedTasks">
             <app-checkbox
                 [isChecked]="task.isDone"
                 aria-checked="task.isDone"
@@ -19,4 +19,15 @@
             </button>
         </li>
     </ul>
+    <div class="pagination-container">
+        <app-pagination-control
+            [currentPage]="currentPage"
+            [totalPages]="totalPages"
+            [pageSize]="itemsPerPage"
+            [totalResults]="totalResults"
+            (pageChanged)="onPageChanged($event)"
+            (pageSizeChange)="onPageSizeChange($event)"
+        >
+        </app-pagination-control>
+    </div>
 </div>
