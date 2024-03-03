@@ -1,31 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AboutMeComponent } from './components/about-me/about-me.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
-import { FormsModule } from '@angular/forms';
+import { PaginationControlComponent } from './components/pagination-control/pagination-control.component';
+import { DialogService } from './services/dialog/dialog.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, MatIconModule, MatDialogModule, MatButtonModule],
     declarations: [
-        PaginationComponent,
+        PaginationControlComponent,
         ConfirmDialogComponent,
         LoadingComponent,
-        AboutMeComponent,
         PageNotFoundComponent,
         CheckboxComponent,
     ],
     exports: [
-        PaginationComponent,
+        PaginationControlComponent,
         ConfirmDialogComponent,
         LoadingComponent,
-        AboutMeComponent,
         PageNotFoundComponent,
         CheckboxComponent,
     ],
+    providers: [DialogService],
 })
 export class SharedModule {}

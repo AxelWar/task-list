@@ -2,11 +2,20 @@
     <input
         class="checkbox-input"
         type="checkbox"
-        [ngModel]="checked"
-        (ngModelChange)="onModelChange($event.returnValue)"
+        [checked]="isChecked"
+        (click)="onClick()"
     />
-    <div class="checkbox-border">
-        <div class="checkbox-filling" *ngIf="checked"></div>
+    <div
+        class="checkbox-border"
+        [ngStyle]="{ 'background-color': isChecked ? 'green' : 'transparent' }"
+    >
+        <mat-icon
+            class="checkbox-filling"
+            *ngIf="isChecked"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="done"
+        ></mat-icon>
     </div>
     <ng-content> </ng-content>
 </label>

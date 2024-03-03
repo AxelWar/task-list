@@ -1,0 +1,39 @@
+<div class="pagination-control">
+    <div class="total-results">{{ totalResults }} Resultados</div>
+
+    <div class="page-navigation">
+        <button
+            class="nav-button"
+            aria-label="navigate to previous page"
+            id="previuos-page"
+            (click)="onPrevious()"
+            [disabled]="currentPage <= 1"
+        >
+            Anterior
+        </button>
+        <span>Página {{ currentPage }} de {{ totalPages }}</span>
+        <button
+            class="nav-button"
+            id="next-page"
+            aria-label="navigate to next page"
+            (click)="onNext()"
+            [disabled]="currentPage >= totalPages"
+        >
+            Siguiente
+        </button>
+    </div>
+
+    <div class="page-size">
+        <select
+            id="page-selector"
+            class="custom-select"
+            name="page-selector"
+            aria-label="select page size"
+            (change)="onPageSizeChange($event)"
+        >
+            <option class="size-value" value="5">5</option>
+            <option class="size-value" value="10">10</option>
+            <option class="size-value" value="20">20</option>
+        </select>
+    </div>
+</div>

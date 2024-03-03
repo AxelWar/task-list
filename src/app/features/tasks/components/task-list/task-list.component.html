@@ -1,15 +1,22 @@
 <div class="list-container">
     <ul>
         <li *ngFor="let task of tasks">
-            <input
-                class="task-checkbox"
-                type="checkbox"
-                [checked]="task.isDone"
-                (change)="toggleDone(task.id)"
-            />
-            <!-- <app-checkbox [(ngModel)]="task.isDone"></app-checkbox> -->
+            <app-checkbox
+                [isChecked]="task.isDone"
+                aria-checked="task.isDone"
+                [attr.aria-labelledby]="
+                    'Click to toggle task status with description' + task.title
+                "
+                (toggle)="toggleDone(task.id)"
+            ></app-checkbox>
             {{ task.title }}
-            <button (click)="deleteTask(task.id)">🗑️</button>
+            <button
+                class="delete-task"
+                [attr.aria-labelledby]="'Delete task with value' + task.title"
+                (click)="deleteTask(task.id)"
+            >
+                <mat-icon class="delete-icon" fontIcon="delete"></mat-icon>
+            </button>
         </li>
     </ul>
 </div>

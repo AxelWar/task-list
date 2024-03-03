@@ -27,8 +27,7 @@
                         "prefix": "app",
                         "style": "kebab-case"
                     }
-                ],
-                "indent": "error"
+                ]
             }
         },
         {
