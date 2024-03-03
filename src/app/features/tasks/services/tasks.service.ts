@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Task } from '../../models/task.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TasksService {
-    private tasks: Task[] = [];
+    private tasksSubject = new BehaviorSubject<Task[]>([]);
+    tasks$ = this.tasksSubject.asObservable();
 
     constructor() {
         this.loadTasks();
     }
 
     getTasks(): Task[] {
-        return this.tasks;
+        return this.tasksSubject.value;
     }
 
     addTask(title: string): void {
@@ -21,29 +23,34 @@ export class TasksService {
             title: title,
             isDone: false,
         };
-        this.tasks.push(task);
+        const updatedTasks = [...this.tasksSubject.value, task];
+        this.tasksSubject.next(updatedTasks);
         this.saveTasks();
     }
 
     toggleTaskDone(id: string): void {
-        const task = this.tasks.find((task) => task.id === id);
-        if (task) {
-            task.isDone = !task.isDone;
-            this.saveTasks();
-        }
+        const updatedTasks = this.tasksSubject.value.map((task) =>
+            task.id === id ? { ...task, isDone: !task.isDone } : task
+        );
+        this.tasksSubject.next(updatedTasks);
+        this.saveTasks();
     }
 
     deleteTask(id: string): void {
-        this.tasks = this.tasks.filter((task) => task.id !== id);
+        const updatedTasks = this.tasksSubject.value.filter(
+            (task) => task.id !== id
+        );
+        this.tasksSubject.next(updatedTasks);
         this.saveTasks();
     }
 
     private loadTasks(): void {
         const tasks = localStorage.getItem('tasks');
-        this.tasks = tasks ? JSON.parse(tasks) : [];
+        const initialTasks = tasks ? JSON.parse(tasks) : [];
+        this.tasksSubject.next(initialTasks);
     }
 
     private saveTasks(): void {
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        localStorage.setItem('tasks', JSON.stringify(this.tasksSubject.value));
     }
 }
