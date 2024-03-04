@@ -4,6 +4,7 @@
         type="checkbox"
         [checked]="isChecked"
         (click)="onClick()"
+        aria-label="toggle checkbox"
     />
     <div
         class="checkbox-border"
@@ -13,7 +14,7 @@
             class="checkbox-filling"
             *ngIf="isChecked"
             aria-hidden="false"
-            aria-label="Example home icon"
+            aria-label="checked icon"
             fontIcon="done"
         ></mat-icon>
     </div>

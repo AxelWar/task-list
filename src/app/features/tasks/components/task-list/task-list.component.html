@@ -3,16 +3,14 @@
         <li *ngFor="let task of displayedTasks">
             <app-checkbox
                 [isChecked]="task.isDone"
-                aria-checked="task.isDone"
-                [attr.aria-labelledby]="
-                    'Click to toggle task status with description' + task.title
-                "
+                [attr.aria-checked]="task.isDone"
+                [attr.aria-label]="'Toggle status for task ' + task.title"
                 (toggle)="toggleDone(task.id)"
             ></app-checkbox>
             {{ task.title }}
             <button
                 class="delete-task"
-                [attr.aria-labelledby]="'Delete task with value' + task.title"
+                [attr.aria-label]="'Remove ' + task.title + ' from list'"
                 (click)="deleteTask(task.id)"
             >
                 <mat-icon class="delete-icon" fontIcon="delete"></mat-icon>
