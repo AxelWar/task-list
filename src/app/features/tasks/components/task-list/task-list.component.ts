@@ -35,12 +35,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.tasksSubscription = this.tasksService.tasks$.subscribe((tasks) => {
-            this.tasks = tasks;
-            this.displayedTasks = tasks;
-            this.filteredTasks = [...tasks];
-            this.updatePagination();
-        });
+        this.tasksSubscription = this.tasksService.tasks$.subscribe(
+            (tasks: Task[]) => {
+                this.tasks = tasks;
+                this.displayedTasks = tasks;
+                this.filteredTasks = [...tasks];
+                this.updatePagination();
+            }
+        );
     }
 
     toggleDone(id: string): void {

@@ -1,5 +1,5 @@
 <div class="pagination-control">
-    <div class="total-results">{{ totalResults }} Resultados</div>
+    <div class="total-results">{{ totalResults }} Tasks</div>
 
     <div class="page-navigation">
         <button
@@ -9,9 +9,13 @@
             (click)="onPrevious()"
             [disabled]="currentPage <= 1"
         >
-            Anterior
+            <mat-icon
+                aria-hidden="false"
+                aria-label="Navigate to previous page"
+                fontIcon="navigate_before"
+            ></mat-icon>
         </button>
-        <span>Página {{ currentPage }} de {{ totalPages }}</span>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
         <button
             class="nav-button"
             id="next-page"
@@ -19,7 +23,11 @@
             (click)="onNext()"
             [disabled]="currentPage >= totalPages"
         >
-            Siguiente
+            <mat-icon
+                aria-hidden="false"
+                aria-label="Navigate to next page"
+                fontIcon="navigate_next"
+            ></mat-icon>
         </button>
     </div>
 

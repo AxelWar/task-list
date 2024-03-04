@@ -29,7 +29,7 @@ export class TasksService {
     }
 
     toggleTaskDone(id: string): void {
-        const updatedTasks = this.tasksSubject.value.map((task) =>
+        const updatedTasks = this.tasksSubject.value.map((task: Task) =>
             task.id === id ? { ...task, isDone: !task.isDone } : task
         );
         this.tasksSubject.next(updatedTasks);
@@ -38,19 +38,19 @@ export class TasksService {
 
     deleteTask(id: string): void {
         const updatedTasks = this.tasksSubject.value.filter(
-            (task) => task.id !== id
+            (task: Task) => task.id !== id
         );
         this.tasksSubject.next(updatedTasks);
         this.saveTasks();
     }
 
-    private loadTasks(): void {
+    loadTasks(): void {
         const tasks = localStorage.getItem('tasks');
         const initialTasks = tasks ? JSON.parse(tasks) : [];
         this.tasksSubject.next(initialTasks);
     }
 
-    private saveTasks(): void {
+    saveTasks(): void {
         localStorage.setItem('tasks', JSON.stringify(this.tasksSubject.value));
     }
 }
