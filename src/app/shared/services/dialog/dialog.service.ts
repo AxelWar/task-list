@@ -1,22 +1,14 @@
-import { ComponentType } from '@angular/cdk/portal';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ConfirmDialogData } from '../../models/confirm-dialog-data.interface';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DialogService {
-    matDialog = inject(MatDialog);
-
-    private static instance: DialogService | null = null;
-    constructor() {
-        DialogService.instance = this;
-    }
-    public static getInstance() {
-        return DialogService.instance;
-    }
+    constructor(private matDialog: MatDialog) {}
 
     openDialog<T>(
         data: ConfirmDialogData,

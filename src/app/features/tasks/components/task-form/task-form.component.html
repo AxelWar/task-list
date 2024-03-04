@@ -10,12 +10,13 @@
 
             <div class="task-input-info">
                 <span class="input-message">
-                    @if (
-                        taskForm.controls.title.value &&
-                        taskForm.controls.title.value.length < 3
-                    ) {
-                        <span>* Min length 3 chars</span>
-                    }
+                    <span
+                        *ngIf="
+                            taskForm.controls.title.value &&
+                            taskForm.controls.title.value.length < 3
+                        "
+                        >* Min length 3 chars</span
+                    >
                 </span>
                 <span class="input-counter">
                     {{ title?.value?.length || 0 }}/80
@@ -29,7 +30,7 @@
                 aria-label="Add new task"
                 [disabled]="!taskForm.valid"
             >
-                Add
+                <mat-icon class="add-icon" fontIcon="add"></mat-icon>
             </button>
         </div>
     </div>

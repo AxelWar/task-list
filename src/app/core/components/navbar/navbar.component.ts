@@ -19,7 +19,7 @@ export class NavbarComponent {
     openDialog() {
         this.dialog.open(DialogNavbarComponent, {
             width: '400px',
-            height: '250px',
+            height: '300px',
         });
     }
 }

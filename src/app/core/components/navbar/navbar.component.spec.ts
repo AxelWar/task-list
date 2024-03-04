@@ -37,7 +37,7 @@ describe('NavbarComponent', () => {
         component.openDialog();
         expect(dialog.open).toHaveBeenCalledWith(DialogNavbarComponent, {
             width: '400px',
-            height: '250px',
+            height: '300px',
         });
     });
 });
