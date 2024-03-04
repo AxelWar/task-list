@@ -18,6 +18,9 @@
                 <mat-icon class="delete-icon" fontIcon="delete"></mat-icon>
             </button>
         </li>
+        <li class="empty-list" *ngIf="displayedTasks.length === 0">
+            There are no tasks to display
+        </li>
     </ul>
     <div class="pagination-container">
         <app-pagination-control
