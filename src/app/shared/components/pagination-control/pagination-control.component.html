@@ -32,16 +32,11 @@
     </div>
 
     <div class="page-size">
-        <select
-            id="page-selector"
-            class="custom-select"
-            name="page-selector"
-            aria-label="select page size"
-            (change)="onPageSizeChange($event)"
-        >
-            <option class="size-value" value="5">5</option>
-            <option class="size-value" value="10">10</option>
-            <option class="size-value" value="20">20</option>
-        </select>
+        <app-dropdown
+            [options]="defaultOptions"
+            title="Page Size"
+            [showTitle]="false"
+            (currentValueChange)="onPageSizeChange($event)"
+        ></app-dropdown>
     </div>
 </div>

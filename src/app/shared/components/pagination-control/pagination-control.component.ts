@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DropdownOption } from '../../models/dropdown-options.interface';
 
 @Component({
     selector: 'app-pagination-control',
@@ -12,6 +13,11 @@ export class PaginationControlComponent {
     @Input() totalResults = 0;
     @Output() pageChanged = new EventEmitter<{ page: number; size: number }>();
     @Output() pageSizeChange = new EventEmitter<number>();
+    defaultOptions: DropdownOption[] = [
+        { value: '5' },
+        { value: '10' },
+        { value: '15' },
+    ];
 
     onPrevious() {
         if (this.currentPage > 1) {
@@ -27,12 +33,9 @@ export class PaginationControlComponent {
         }
     }
 
-    onPageSizeChange(event: Event) {
-        const selectElement = event.target as HTMLSelectElement | null;
-        if (selectElement) {
-            const newSize = Number(selectElement.value);
-            this.pageSizeChange.emit(newSize);
-        }
+    onPageSizeChange(event: string) {
+        const newSize = Number(event);
+        this.pageSizeChange.emit(newSize);
     }
 
     private emitPageChanged() {
