@@ -1,0 +1,37 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="dropdown-collection">
+    <button
+        class="dropdown-button"
+        aria-haspopup="listbox"
+        aria-labelledby="dropdown-label"
+        (click)="toggleDropdown()"
+        (appClickOutside)="dropdownOpen = false"
+    >
+        <span *ngIf="showTitle" id="dropdown-label">{{ title }}: </span
+        ><span class="dropdown-value">{{ currentValue }}</span>
+        <span class="dropdown-icon">
+            <img
+                class="dropdown-svg"
+                src="../../../../assets/icons/chevron.svg"
+                [class.rotated]="dropdownOpen"
+                alt="chevron"
+            />
+        </span>
+    </button>
+    <ul
+        class="dropdown-list"
+        role="listbox"
+        aria-expanded="false"
+        [ngClass]="{ 'dropdown-open': dropdownOpen }"
+    >
+        <li
+            *ngFor="let o of options"
+            [ngClass]="{ selected: currentValue === o.value }"
+            [attr.aria-selected]="currentValue === o.value"
+            [innerHTML]="o.value"
+            tabindex="0"
+            role="option"
+            (click)="select(o.value)"
+        ></li>
+    </ul>
+</div>

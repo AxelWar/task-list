@@ -60,9 +60,8 @@ describe('PaginationControlComponent', () => {
     });
 
     it('should emit pageSizeChange event when onPageSizeChange is called', () => {
-        const mockEvent = { target: { value: '10' } } as unknown as Event;
         jest.spyOn(component.pageSizeChange, 'emit');
-        component.onPageSizeChange(mockEvent);
+        component.onPageSizeChange('10');
         expect(component.pageSizeChange.emit).toHaveBeenCalledWith(10);
     });
 });
